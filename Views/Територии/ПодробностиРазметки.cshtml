@@ -1,0 +1,46 @@
+﻿@model GardenManager.Models.Разметка
+
+@{
+    ViewBag.Title = "ПодробностиРазметки";
+}
+
+<h2>ПодробностиРазметки</h2>
+
+<div>
+    <h4>Разметка</h4>
+    <hr />
+
+    <form id="form1" runat="server">     
+     <canvas id="MyCanvas" height="@ViewBag.Length" width="@ViewBag.Width"></canvas>    
+    </form>
+    
+    @Html.ActionLink("Создать зону", "СоздатьНовуюЗону", new { tid = ViewBag.Tid , rid = Model.Id})
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zones)
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var zone in Model.Zones)
+                {
+                    <li>@zone.Name : @zone.UsePlant</li>
+                }
+            </ul>
+        </dd>
+
+    </dl> 
+</div>
+<p>
+  <!--@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |-->  
+    @Html.ActionLink("Вернуться к територии", "ПросмотретьПодробности", new { tid = ViewBag.Tid})
+</p>

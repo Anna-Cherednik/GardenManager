@@ -1,0 +1,33 @@
+﻿@model IEnumerable<GardenManager.Models.Plant>
+
+@{
+    ViewBag.Title = "ПолучитьСписокРастений";
+}
+
+<h2>Список растений</h2>
+
+<p>
+    @Html.ActionLink("Добавить новое растение", "ДобавитьРастение")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+      <!--  @Html.ActionLink("Edit", "Edit", new { id=item.Id }) | -->      
+            @Html.ActionLink("Просмотреть подробности", "ПросмотретьПодробности", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Удалить", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

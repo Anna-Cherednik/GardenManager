@@ -1,0 +1,49 @@
+﻿@model GardenManager.Models.Територия
+
+@{
+    ViewBag.Title = "ПросмотретьПодробности";
+}
+
+<h2>Подробности участка</h2>
+
+<div>
+    <h4>Територия</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Размеры участка
+        </dt>
+
+        <dd>
+            @Model.Length х @Model.Width м
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Разметки)
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var разметка in Model.Разметки)
+                {
+                    <li>@разметка.DateCreation | 
+                    @Html.ActionLink("Перейти к разметке", "ПодробностиРазметки", new { tid = Model.Id, rid = разметка.Id }))</li> 
+                }
+            </ul>
+            @Html.ActionLink("Создать новую разметку", "СоздатьНовуюРазметку", new { tid = Model.Id }))
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <!-- @Html.ActionLink("Edit", "Edit", new { tid = Model.Id }) |-->
+    @Html.ActionLink("Вернуться к списку участков", "ПолучитьСписокУчастков")
+</p>

@@ -1,0 +1,55 @@
+﻿@model GardenManager.Models.Plant
+
+@{
+    ViewBag.Title = "ПросмотретьПодробности";
+}
+
+<h2>Подробные сведения о растении</h2>
+
+<div>
+    <h4>Растение</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NegativePlants)
+        </dt>
+        <dd>
+            @{
+                string negativePlants = "";
+                foreach (var negs in Model.NegativePlants)
+                {
+                    negativePlants = negativePlants + negs.Name + ", ";
+                }
+                negativePlants = negativePlants.TrimEnd(' ', ',');
+                @Html.Raw(negativePlants);
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PositivePlants)
+        </dt>       
+        <dd>
+            @{
+                string positivePlants = "";
+                foreach (var poses in Model.PositivePlants)
+                {
+                    positivePlants = positivePlants + poses.Name + ", ";
+                }
+                positivePlants = positivePlants.TrimEnd(' ', ',');
+                @Html.Raw(positivePlants);
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <!--@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) | -->
+    @Html.ActionLink("Вернуться к списку растений", "ПолучитьСписокРастений")
+</p>
